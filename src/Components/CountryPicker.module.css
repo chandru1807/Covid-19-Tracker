@@ -1,0 +1,10 @@
+.country-container{
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
+
+.picker{
+    margin: 0 20px;
+    width: 200px;
+}

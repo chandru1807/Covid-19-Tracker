@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.confirmed{
+    color: #9135e5;
+    font-weight: bold;
+}
+
+.recovered{
+    color: green;
+    font-weight: bold;
+}
+
+.deaths{
+    color: red;
+    font-weight: bold;
+}
+
+.bbconfirmed{
+    border-left:5px solid #9135e5;
+}
+.bbdeaths{
+    border-left: 5px solid red;
+}
+.bbrecovered{
+    border-left: 5px solid green;
+}
+.pct{
+    font-weight: bold;
+}
