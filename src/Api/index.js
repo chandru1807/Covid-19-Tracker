@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 let url = "https://covid19.mathdro.id/api";
+const indiaUrl = 'https://api.covid19india.org/data.json';
 
 const calcRecoveredPct = (totalConfirmed, totalRecovered) => {
     let pct = ((totalRecovered/totalConfirmed) * 100).toFixed(2);
@@ -71,4 +72,19 @@ export const getCountries = async () => {
     const countryData = await axios.get(url+'/countries');
     const {countries} = countryData.data;
     return countries;
+}
+
+export const getStateWiseForIndia = async () => {
+    const {data: {statewise}} = await axios.get(indiaUrl);
+    console.log(statewise);
+    let modifiedStateData = {}
+    if(statewise){
+        statewise.forEach(state => {
+            modifiedStateData[state['statecode'].toLowerCase()] = state;
+        });
+    }
+    else{
+
+    }
+    return modifiedStateData;   
 }
