@@ -7,12 +7,46 @@
 .india-map .svg-map {
     stroke: white;
     width: 45vw;
+    stroke-width: 1.5px;
+
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    
+    
+}
+
+@keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+@keyframes fade-in{
+    from{
+        opacity: 0 ;
+    }
+    to{
+        opacity: 1;
+    }
 }
 
 @media (max-width: 700px) {
     .india-map .svg-map {
 
-        width: 80vw;
+        width: 90vw;
+    }
+}
+
+@keyframes indiamap-animation{
+    from{
+        transform: translateX(-200px);
+        opacity: 0;
+        fill-opacity: 0;
+    }   
+    to{
+        transform: translateX(0);
+        opacity: 1;
+        fill-opacity: 1;
     }
 }
 
@@ -28,7 +62,7 @@
 
 .tooltip {
     position: fixed;
-    width: 200px;
+    width: 250px;
     padding: 10px;
     border: 1px solid darkgray;
     background-color: white;
@@ -37,15 +71,18 @@
 }
 
 .location-red{
-    fill: red !important;
+    fill: #e12424 !important;
+    animation: indiamap-animation 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) both, dash 3s linear 3s forwards;
 }
 
 .location-green{
     fill: green !important;
+    animation: indiamap-animation 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1s both, dash 3s linear 3s forwards;
 }
 
 .location-orange{
     fill: orange !important;
+    animation: indiamap-animation 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s both, dash 3s linear 3s forwards;
 }
 
 @keyframes tooltip-animation{
@@ -60,4 +97,34 @@
         opacity: 1;
         transform: scale(1);
     }
+}
+
+.up-arrow-style{
+    transform: rotate(90deg);
+    
+    animation: up-arrow-fade 2s infinite 0.5s;
+}
+
+@keyframes up-arrow-fade{
+    from{
+        height: 0;
+    }
+    to{
+        height: 15px;
+    }
+}
+
+.green-arrow{
+    stroke: green;
+    fill:green;
+}
+
+.red-arrow{
+    stroke: #e12424;
+    fill:#e12424;
+}
+
+.orange-arrow{
+    stroke: orange;
+    fill:orange;
 }
