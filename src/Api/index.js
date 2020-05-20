@@ -17,8 +17,6 @@ const calcRecoveredPct = (totalConfirmed, totalRecovered) => {
   const activePct = (totalConfirmed, totalRecovered, totalDeaths) => {
     let pct = (+((totalRecovered/totalConfirmed) * 100).toFixed(2) + +((totalDeaths/totalConfirmed) * 100).toFixed(2)).toFixed(2);
     pct = (100 - pct).toFixed(2);
-    console.log(pct);
-    
     return `Active cases: ${pct}%`;
   };
 
@@ -28,7 +26,6 @@ export const getAllApiDetails = async (country) => {
         changeUrl += `/countries/${country}`;
     }
     const allData = await axios.get(changeUrl);
-    console.log(allData);
     
     const {confirmed, recovered, deaths, lastUpdate} = allData.data;
     recovered['pct'] = calcRecoveredPct(confirmed.value, recovered.value);
@@ -47,7 +44,7 @@ export const getAllApiDetails = async (country) => {
 
 export const getDailyData = async () => {
     const dailyData = await axios.get(url+'/daily');
-    console.log(dailyData);
+   
     let deaths = [];
         let dates = [];
         let infected = [];
@@ -63,8 +60,7 @@ export const getDailyData = async () => {
         infected,
         dates
     }
-    console.log(finalData);
-    
+   
     return finalData;
 }
 
@@ -76,7 +72,7 @@ export const getCountries = async () => {
 
 export const getStateWiseForIndia = async () => {
     const {data: {statewise}} = await axios.get(indiaUrl);
-    console.log(statewise);
+    
     let modifiedStateData = {}
     if(statewise){
         statewise.forEach(state => {
@@ -91,7 +87,6 @@ export const getStateWiseForIndia = async () => {
 
 export const getCasesTimelineForIndia = async () => {
     const {data: {cases_time_series}} = await axios.get(indiaUrl);
-    console.log(cases_time_series);
     const modifiedTimelineData = {
         'dates':[],
         'infected':[],

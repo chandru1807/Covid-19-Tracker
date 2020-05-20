@@ -9,7 +9,7 @@ import { Graphs } from './Graphs';
 
 
 export const HomePage = (props) => {
-    console.log('in home', props);
+
     
     const [cardDatas, setCardData] = useState({});
 
@@ -23,7 +23,7 @@ export const HomePage = (props) => {
             const dailydata = await getDailyData();
             const countryData = await getCountries();
 
-            console.log('here', countryData);
+
             setCardData(allDetails);
             setDailyData(dailydata);
             setAllCountries(countryData);
@@ -34,7 +34,7 @@ export const HomePage = (props) => {
 
     const fetchDataOfCountry = async (country) => {
         const countryDetails = await getAllApiDetails(country);
-        console.log(countryDetails);
+
         setCardData(countryDetails);
         if (country === 'Global') {
             const dailydata = await getDailyData();

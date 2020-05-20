@@ -11,7 +11,7 @@ export const IndiaStats = () => {
     useEffect(() => {
         const getStateWiseData = async () => {
             const stateWiseDataObj = await getStateWiseForIndia();
-            console.log(stateWiseDataObj);
+
             setStatewiseData(stateWiseDataObj)
         }
 
@@ -21,7 +21,7 @@ export const IndiaStats = () => {
     useEffect(() => {
         const getTimelineData = async () => {
             const indiaTimelineData = await getCasesTimelineForIndia();
-            console.log(indiaTimelineData);
+
             setTimelineData(indiaTimelineData)
         }
 

@@ -5,7 +5,7 @@ import styles from './Cards.module.css';
 import CountUp from 'react-countup';
 
 export const Cards = ({ data }) => {
-  console.log(data);
+
   if (Object.keys(data).length === 0) {
     return (
       <div className={styles.container}>

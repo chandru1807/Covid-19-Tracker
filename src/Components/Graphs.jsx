@@ -6,7 +6,7 @@ import { Paper } from '@material-ui/core';
 
 
 export const Graphs = ({ data }) => {
-  console.log(data);
+
 
   const getLinegraphDetails = () => {
     if(data['recovered']){
