@@ -8,19 +8,35 @@ import { Paper } from '@material-ui/core';
 export const Graphs = ({ data }) => {
   console.log(data);
 
-  const lineGraph = data['dates'] ? <Line
-    options={
-      {
-        maintainAspectRatio: false,
-        animation: {
-
-          easing: 'easeInOutElastic'
-        }
-      }
+  const getLinegraphDetails = () => {
+    if(data['recovered']){
+      return [
+        {
+          data: data['infected'],
+          label: 'Infected',
+          borderColor: 'rgb(145, 53, 229)',
+          backgroundColor: 'rgba(145, 53, 229,0.3)',
+          fill: true
+        },
+        {
+          data: data['deaths'],
+          label: 'Deaths',
+          borderColor: 'red',
+          backgroundColor: 'rgba(255,0,0,0.5)',
+          fill: true
+        },
+        
+        {
+          data: data['recovered'],
+          label: 'Recovered',
+          borderColor: 'orange',
+          backgroundColor: 'rgba(255, 165, 0,0.3)',
+          fill: true
+        } 
+      ]
     }
-    data={{
-      labels: data['dates'],
-      datasets: [
+    else{
+      return [
         {
           data: data['infected'],
           label: 'Infected',
@@ -35,7 +51,23 @@ export const Graphs = ({ data }) => {
           backgroundColor: 'rgba(255,0,0,0.5)',
           fill: true
         }
-      ]
+      ]  
+    }
+  }
+
+  const lineGraph = data['dates'] ? <Line
+    options={
+      {
+        maintainAspectRatio: false,
+        animation: {
+
+          easing: 'easeInOutElastic'
+        }
+      }
+    }
+    data={{
+      labels: data['dates'],
+      datasets: getLinegraphDetails()
     }}
   /> : null;
 

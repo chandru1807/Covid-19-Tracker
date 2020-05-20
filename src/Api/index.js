@@ -88,3 +88,25 @@ export const getStateWiseForIndia = async () => {
     }
     return modifiedStateData;   
 }
+
+export const getCasesTimelineForIndia = async () => {
+    const {data: {cases_time_series}} = await axios.get(indiaUrl);
+    console.log(cases_time_series);
+    const modifiedTimelineData = {
+        'dates':[],
+        'infected':[],
+        'recovered':[],
+        'deaths':[]
+    }
+    if(cases_time_series){
+        for(let perDay of cases_time_series){
+            modifiedTimelineData['dates'].push(perDay.date);
+            modifiedTimelineData['infected'].push(perDay.totalconfirmed);
+            modifiedTimelineData['recovered'].push(perDay.totalrecovered);
+            modifiedTimelineData['deaths'].push(perDay.totaldeceased);
+        }
+    }
+    
+    
+    return modifiedTimelineData;   
+}

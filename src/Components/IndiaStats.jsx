@@ -1,10 +1,13 @@
 
-import  React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { IndiaMap } from './IndiaMap';
-import {getStateWiseForIndia} from '../Api'
+import { getStateWiseForIndia, getCasesTimelineForIndia } from '../Api';
+import { Graphs } from './Graphs';
 
 export const IndiaStats = () => {
     const [statewiseData, setStatewiseData] = useState(null);
+    const [timelineData, setTimelineData] = useState([]);
+
     useEffect(() => {
         const getStateWiseData = async () => {
             const stateWiseDataObj = await getStateWiseForIndia();
@@ -13,11 +16,27 @@ export const IndiaStats = () => {
         }
 
         getStateWiseData();
-    },[])
+    }, [])
+
+    useEffect(() => {
+        const getTimelineData = async () => {
+            const indiaTimelineData = await getCasesTimelineForIndia();
+            console.log(indiaTimelineData);
+            setTimelineData(indiaTimelineData)
+        }
+
+        getTimelineData();
+    }, [])
     return (
-        <div>
-            <h2>Stats for India</h2>
-            <IndiaMap stateData={statewiseData}/>
+        <div style={{ textAlign: 'center' }}>
+            <div style={{ margin: '10px' }}>
+                <h2>Statewise Stats</h2>
+                <IndiaMap stateData={statewiseData} />
+            </div>
+            <div style={{ margin: '10px' }}>
+                <h2>Timeline Stats</h2>
+            </div>
+            <Graphs data={timelineData} />
         </div>
     );
 };

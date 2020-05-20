@@ -7,7 +7,7 @@
 .india-map .svg-map {
     stroke: white;
     width: 45vw;
-    stroke-width: 1.5px;
+    stroke-width: 0.75px;
 
     stroke-dasharray: 2000;
     stroke-dashoffset: 2000;
@@ -33,10 +33,11 @@
 .tooltip {
     position: fixed;
     width: 250px;
-    padding: 10px;
+    padding: 5px;
     background-color: white;
     animation: tooltip-animation 0.5s;
     border-radius: 20px;
+    text-align: left;
     /* transition: top 0.5s; */
 }
 
@@ -46,38 +47,46 @@
     from{
         /* transform: translateX(-200px); */
         opacity: 0;
-        fill-opacity: 0;
+       
     }   
     to{
         /* transform: translateX(0); */
         opacity: 1;
-        fill-opacity: 1;
+        
     }
 }
+
 
 .india-map .svg-map__location {
     cursor: pointer;
     fill: grey;
+    transition: opacity 0.5s, stroke-width 0.5s;
+
 }
 
 .india-map .svg-map__location:focus,
 .india-map .svg-map__location:hover {
     opacity: 0.75;
+    stroke-width: 2px;
+
 }
 
 
 
 .location-red{
+    /* opacity: 0; */
     fill: #e12424 !important;
     animation: indiamap-animation 0.75s linear both;
 }
 
 .location-green{
+    /* opacity: 0; */
     fill: green !important;
     animation: indiamap-animation 0.75s linear 1.5s both;
 }
 
 .location-orange{
+    opacity: 0;
     fill: orange !important;
     animation: indiamap-animation 0.75s linear 0.75s both;
 }
@@ -126,14 +135,47 @@
     fill:orange;
 }
 
+.legends{
+    display: inline-flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
 
-@media (max-width: 700px) {
+.legend-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.legend-box{
+    margin-right: 2px;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+
+@media (max-width: 799px) {
     .india-map .svg-map {
 
-        width: 90vw;
+        width: 80vw;
     }
 
-    /* .tooltip{
+    .legends{
+        font-size: 10px;
+        width: 80%;
+    }
+
+    .legend-box{
+        height: 10px;
+        width: 10px;
+    }
+    .tooltip {
         width: 150px;
         font-size: 12px;
     }
@@ -145,6 +187,16 @@
         to{
             height: 12px;
         }
-    } */
-    
+    }
+
 }
+
+@media (max-width: 500px){
+    .india-map .svg-map {
+
+        width: 100vw;
+    }
+}
+
+
+
