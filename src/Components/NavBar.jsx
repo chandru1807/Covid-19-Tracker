@@ -7,7 +7,7 @@ export const NavBar = () => {
     return (
         <AppBar className={styles['appbar-container']} position="static">
             <Toolbar>
-                <Button className={styles['button-container']} component={Link} to="/" color="inherit">Home</Button>
+                <Button className={styles['button-container']} component={Link} to="/" color="inherit">Global Stats</Button>
                 <Button className={styles['button-container']} component={Link} to="/indiastats" color="inherit">India Stats</Button>
             </Toolbar>
         </AppBar>
